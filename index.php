@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/7e0fd69cd5.js" crossorigin="anonymous"></script>
+    
     <!-- Estilo Pessoal -->
     <link rel="stylesheet" href="css/style.css">
 
@@ -17,6 +20,8 @@
 <body>
 
 <?php
+
+    session_start();
 
     $servidor = 'localhost';
     $usuario = 'root';
@@ -41,6 +46,7 @@
             echo '<th scope="col">Nome</th>';
             echo '<th scope="col">Celular</th>';
             echo '<th scope="col">Telefone</th>';
+            echo '<th scope="col">Deletar</th>';
         echo '</tr>';
         echo '</thead>';
         echo '<tbody>';
@@ -52,11 +58,18 @@
                 echo '<td>' . $linhas['nome'] . '</td>';
                 echo '<td>' .$linhas['celular'] . '</td>';
                 echo '<td>' .$linhas['telefone'] . '</td>';
+                echo '<td> <a href="delete.php?id_delete=' . $linhas['id'] . '"> <i class="fa-regular fa-trash-can fa-bounce" style="color: #ff0000;"></i> </a> </td>';
             echo '</tr>';
         
         }
         echo '</tbody>';
         echo '</table>';
+    }
+    
+    if (isset($_SESSION['mensagem'])) 
+    {
+        echo $_SESSION['mensagem'];
+        unset($_SESSION['mensagem']);
     }
 ?>
 
